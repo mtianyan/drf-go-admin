@@ -1,0 +1,39 @@
+mtianyan_mysql:
+    image: mysql:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --mysqlx=0
+    environment:
+      - MYSQL_PORT=3306  # cannot change this port to other number
+      - MYSQL_DATABASE=goadmindb # name you want for the database
+      - MYSQL_USER=root # change to whatever username you wantr
+      - MYSQL_ROOT_PASSWORD=mtianyanroot #change to good root password
+    ports:
+      - "3309:3306"
+    volumes:
+      - "./db:/var/lib/mysql"
+      - "./sql:/sql"
+
+
+mtianyan_nginx:
+  restart: always
+  image: nginx
+  ports:
+    - "82:80"
+  volumes:
+    - ./conf/nginx.conf:/etc/nginx/conf.d/nginx.conf
+  volumes_from:
+    - mtianyan_go_admin
+  links:
+    - mtianyan_go_admin:web
+
+mtianyan_go_admin:
+  restart: always
+  build: .
+  ports:
+    - "8014:8000"
+  volumes:
+    - .:/ProjectPath
+    - ./conf/uwsgi.ini:/etc/uwsgi.ini
+  links:
+    - mtianyan_mysql:mysql
+  command: uwsgi -s :8000 -w drf_go_admin.wsgi -p 3

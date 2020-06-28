@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'api',
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,7 +82,7 @@ DATABASES = {
         'NAME': 'goadmindb',  # 数据库名
         'USER': 'root',  # 用户名
         'PASSWORD': 'mtianyanroot',  # 密码
-        'HOST': '127.0.0.1',  # 链接id ,空为本地,可以设置绝对路径
+        'HOST': 'mysql',
         'PORT': '3306',  # 端口号
     }
 }
@@ -124,6 +126,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
@@ -134,3 +139,5 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'PAGE_SIZE': 5,
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

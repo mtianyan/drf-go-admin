@@ -19,7 +19,7 @@ router.register('dept/?', views.SysDeptViewSet)
 router.register('dict/databytype/?', views.SysDictDataViewSet)
 
 router.register('dict/typelist/?', views.SysDictTypeViewSet)
-router.register('dict/type?', views.SysDictTypeViewSet)
+router.register('dict/type/?', views.SysDictTypeViewSet)
 
 router.register('loginloglist/?', views.SysLoginlogViewSet)
 
@@ -39,7 +39,7 @@ router.register('roleDeptTreeselect/?', views.SysRoleDeptViewSet)
 router.register('menuTreeselect/?', views.SysRoleMenuViewSet)
 router.register('roleMenuTreeselect/?', views.SysRoleMenuViewSet)
 
-router.register('sys/tables/page?', views.SysTablesViewSet)
+router.register('sys/tables/page/?', views.SysTablesViewSet)
 
 router.register('sysUserList/?', views.SysUserViewSet)
 router.register('sysUser/?', views.SysUserViewSet)
