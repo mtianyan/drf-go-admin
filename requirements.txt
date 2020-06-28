@@ -1,0 +1,4 @@
+coreapi
+django-filter
+djangorestframework
+mysqlclient
