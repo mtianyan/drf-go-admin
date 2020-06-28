@@ -5,7 +5,7 @@
 
 ![](http://cdn.pic.mtianyan.cn/blog_img/20200628155234.png)
 
-- 在线体验地址: 
+- 在线体验地址: https://admin.funpython.cn/
 
 ## 运行指南:
 
@@ -18,7 +18,7 @@ docker-compose up
 
 # 导入数据
 docker exec -it drf-go-admin_mtianyan_mysql_1 bash
-mysql -u root -p -D goadmindb < goadmindb.sql
+mysql -u root -p -D goadmindb < sql/goadmindb.sql
 # 输入密码: mtianyanroot 
 ```
 
